@@ -1,15 +1,17 @@
 package com.watsidev.barcaoneclone.model
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.watsidev.barcaoneclone.R
 
 data class ProximamenteModel(
-    @DrawableRes val imageRes: Int,
-    @StringRes val labelRes: Int
-)
+    override val imageRes: Int,
+    override val imageText: Int,
+    override val descriptionRes: Int? = null
+): PrimaryCardInterface
 
 val proxList = listOf(
-    ProximamenteModel(R.drawable.barcaenvivo, R.string.BarcaEnVivo),
+    ProximamenteModel(
+        R.drawable.barcaenvivo,
+        R.string.BarcaEnVivo
+    ),
 )
 

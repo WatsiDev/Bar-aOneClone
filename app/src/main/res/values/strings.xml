@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">BarcaOneClone</string>
-
+    <string name="ProximamenteEnOne">Proximamente en One</string>
     <string name="BarcaEnVivo">Barça En Vivo</string>
+
+    <string name="NexGenEp1">The Next Generation: Episodio 1</string>
+    <string name="NexGenEp2">The Next Generation: Episodio 2</string>
+    <string name="NexGenEp3">The Next Generation: Episodio 3</string>
+    <string name="NexGenEp4">The Next Generation: Episodio 4</string>
+
+    <string name="ElNouClam">El nou clam</string>
+
+    <string name="CampEvolution01">Nuevo Spotify Camp Nou. La evolución del Estadio | Episodio 1</string>
+    <string name="CampEvolution02">Nuevo Spotify Camp Nou. La evolución del Estadio | Episodio 2</string>
+    <string name="CampEvolution03">Nuevo Spotify Camp Nou. La evolución del Estadio | Episodio 3</string>
+    <string name="CampEvolution04">Nuevo Spotify Camp Nou. La evolución del Estadio | Episodio 4</string>
+    <string name="LamineYamal">Lamine Yamal</string>
+    <string name="HansiFlick">Hansi Flick</string>
+    <string name="Lewandowski">Lewandowski</string>
+    <string name="Raphinha">Raphinha</string>
+    <string name="JulesKounde">Jules Kounde</string>
+    <string name="Pedri">Pedri</string>
+    <string name="TerStegen">Marc-André Ter Stegen</string>
+    <string name="FerminLopez">Fermín López</string>
+    <string name="PauCubarsi">Pau Cubarsí</string>
+    <string name="RonaldAraujo">Ronald Araujo</string>
+    <string name="Gavi">Gavi</string>
+    <string name="IñakiPeña">Iñaki Peña</string>
+    <string name="DaniOlmo">Dani Olmo</string>
+    <string name="AlejandroBalde">Alejandro Balde</string>
+    <string name="I_igoMartinez">Iñigo Martinez</string>
+    <string name="AndreasChristensen">Andreas Christensen</string>
+    <string name="FerranTorres">Ferran Torres</string>
+    <string name="FrankieDeJong">Frankie De Jong</string>
 </resources>
