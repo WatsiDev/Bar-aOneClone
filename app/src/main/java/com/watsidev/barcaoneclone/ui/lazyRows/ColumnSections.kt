@@ -122,7 +122,9 @@ fun <T : PrimaryCardInterface> LazyRowPlayers(items: List<T>) {
 
 @Composable
 fun <T : PrimaryCardInterface> PlayerCards(item: T, modifier: Modifier = Modifier) {
-    Column {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         Image(
             painterResource(item.imageRes),
             contentDescription = null,
@@ -134,7 +136,9 @@ fun <T : PrimaryCardInterface> PlayerCards(item: T, modifier: Modifier = Modifie
             Text(
                 stringResource(item.imageText!!),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White
+                color = Color.White,
+                modifier = Modifier
+                    .padding(start = 8.dp, bottom = 10.dp)
             )
         }
     }

@@ -32,6 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.watsidev.barcaoneclone.model.itemsNavBar
 import com.watsidev.barcaoneclone.navigation.InicioScreen
+import com.watsidev.barcaoneclone.navigation.NavigationWrapper
+import com.watsidev.barcaoneclone.navigation.PlayersScreen
 import com.watsidev.barcaoneclone.ui.Carrousel
 import com.watsidev.barcaoneclone.ui.theme.BarcaOneCloneTheme
 
@@ -41,14 +43,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BarcaOneCloneTheme {
-                BarcaOneApp()
+                NavigationWrapper()
+//                BarcaOneApp()
             }
         }
     }
 }
 
 @Composable
-fun BarcaOneApp() {
+fun BarcaOneApp(navigataToPlayers: () -> Unit) {
     Scaffold(
         topBar = { TopAppBarca() },
         bottomBar = { NavBar() },
@@ -59,8 +62,7 @@ fun BarcaOneApp() {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            Carrousel(modifier = Modifier.padding(top = 45.dp))
-            InicioScreen(modifier = Modifier.padding(top = 25.dp, bottom = 85.dp))
+            InicioScreen(modifier = Modifier.padding(top = 25.dp, bottom = 85.dp), navigateLambda = navigataToPlayers)
         }
         paddingValues
     }

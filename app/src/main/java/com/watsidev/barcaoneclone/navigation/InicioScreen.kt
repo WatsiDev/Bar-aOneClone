@@ -13,17 +13,19 @@ import com.watsidev.barcaoneclone.model.CampNouEvloution
 import com.watsidev.barcaoneclone.model.NextGenerationData
 import com.watsidev.barcaoneclone.model.PlayersData
 import com.watsidev.barcaoneclone.model.proxList
+import com.watsidev.barcaoneclone.ui.Carrousel
 import com.watsidev.barcaoneclone.ui.banner.SectionBanner
 import com.watsidev.barcaoneclone.ui.lazyRows.ColumnSection
 import com.watsidev.barcaoneclone.ui.lazyRows.SectionRow
 
 @Composable
-fun InicioScreen(modifier: Modifier = Modifier) {
+fun InicioScreen(modifier: Modifier = Modifier, navigateLambda:() -> Unit ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
+//            .padding(horizontal = 16.dp)
     ) {
+        Carrousel(modifier = Modifier.padding(top = 45.dp))
         SectionRow(
             title = "Próximamente en One",
             items = proxList
@@ -63,7 +65,7 @@ fun InicioScreen(modifier: Modifier = Modifier) {
             itemsList = PlayersData.playersList,
             title = "LOS JUGADORES",
             description = "Todo el contenido que no sabías que necesitabas sobre tus jugadores favoritos.",
-            onClick = { /*TODO*/ },
+            onClick = navigateLambda,
             imageBackground = R.drawable.playersbackground
         )
     }
