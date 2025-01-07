@@ -5,10 +5,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.watsidev.barcaoneclone.R
+import com.watsidev.barcaoneclone.model.BarcaOriginalsData
 import com.watsidev.barcaoneclone.model.CampNouEvloution
 import com.watsidev.barcaoneclone.model.NextGenerationData
+import com.watsidev.barcaoneclone.model.PlayersData
 import com.watsidev.barcaoneclone.model.proxList
 import com.watsidev.barcaoneclone.ui.banner.SectionBanner
 import com.watsidev.barcaoneclone.ui.lazyRows.ColumnSection
@@ -45,6 +48,23 @@ fun InicioScreen(modifier: Modifier = Modifier) {
             title = "Lo último en Can Barça",
             items = NextGenerationData.nextGenerationList
         )
-        ColumnSection()
+        SectionBanner(
+            image = R.drawable.cracksdelfuturo,
+            label = null
+        )
+        ColumnSection(
+            itemsList = BarcaOriginalsData.OriginalsList,
+            title = "BARÇA ORIGINALS",
+            description = "Tus ídolos, como nunca antes los habías visto.",
+            onClick = { /*TODO*/ },
+            imageBackground = null
+        )
+        ColumnSection(
+            itemsList = PlayersData.playersList,
+            title = "LOS JUGADORES",
+            description = "Todo el contenido que no sabías que necesitabas sobre tus jugadores favoritos.",
+            onClick = { /*TODO*/ },
+            imageBackground = R.drawable.playersbackground
+        )
     }
 }

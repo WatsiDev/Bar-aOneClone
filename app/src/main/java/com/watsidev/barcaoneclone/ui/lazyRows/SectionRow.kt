@@ -23,7 +23,7 @@ fun <T: PrimaryCardInterface> SectionRow(
 ) {
     Column(
         modifier = modifier
-            .padding(vertical = 20.dp)
+            .padding(vertical = 20.dp, horizontal = 16.dp)
     ) {
         title?.let { Text(it, style = MaterialTheme.typography.titleMedium) }
         Spacer(Modifier.height(16.dp))

@@ -19,7 +19,7 @@ fun SectionBanner(image: Int, label: Int?, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 20.dp)
+            .padding(vertical = 20.dp, horizontal = 16.dp)
     ) {
         Image(
             painterResource(image),
