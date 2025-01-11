@@ -1,4 +1,4 @@
-package com.watsidev.barcaoneclone.navigation
+package com.watsidev.barcaoneclone.navigation.core
 
 import kotlinx.serialization.Serializable
 

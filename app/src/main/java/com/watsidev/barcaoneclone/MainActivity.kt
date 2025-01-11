@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,13 +30,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.watsidev.barcaoneclone.model.itemsNavBar
-import com.watsidev.barcaoneclone.navigation.InicioScreen
-import com.watsidev.barcaoneclone.navigation.NavigationWrapper
-import com.watsidev.barcaoneclone.navigation.PlayersScreen
-import com.watsidev.barcaoneclone.ui.Carrousel
+import com.watsidev.barcaoneclone.navigation.core.NavigationWrapper
+import com.watsidev.barcaoneclone.navigation.start.ManageProfile
+import com.watsidev.barcaoneclone.navigation.start.SelectProfileScreen
+import com.watsidev.barcaoneclone.navigation.tabs.InicioScreen
 import com.watsidev.barcaoneclone.ui.theme.BarcaOneCloneTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +46,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             BarcaOneCloneTheme {
                 NavigationWrapper()
-//                BarcaOneApp()
+//                SelectProfileScreen()
+//                ManageProfile()
             }
         }
     }
@@ -53,7 +56,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BarcaOneApp(navigataToPlayers: () -> Unit) {
     Scaffold(
-        topBar = { TopAppBarca() },
+        topBar = { TopAppBarca(showProfileIcon = true, showSearchIcon = true, titleImg = R.drawable.barcaonelogo) },
         bottomBar = { NavBar() },
         containerColor = MaterialTheme.colorScheme.primaryContainer
     ) { paddingValues ->
@@ -62,7 +65,10 @@ fun BarcaOneApp(navigataToPlayers: () -> Unit) {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            InicioScreen(modifier = Modifier.padding(top = 25.dp, bottom = 85.dp), navigateLambda = navigataToPlayers)
+            InicioScreen(
+                modifier = Modifier.padding(bottom = 85.dp),
+                navigateLambda = navigataToPlayers
+            )
         }
         paddingValues
     }
@@ -70,7 +76,16 @@ fun BarcaOneApp(navigataToPlayers: () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarca() {
+fun TopAppBarca(
+    showBackIcon: Boolean = false,
+    onBackClick: (() -> Unit)? = null,
+    showSearchIcon: Boolean = false,
+    onSearchClick: (() -> Unit)? = null,
+    showProfileIcon: Boolean = false,
+    onProfileClick: (() -> Unit)? = null,
+    titleImg: Int? = null,
+    titleText: String? = null
+) {
     val listColors = listOf(
         MaterialTheme.colorScheme.primaryContainer,
         MaterialTheme.colorScheme.primaryContainer,
@@ -82,31 +97,50 @@ fun TopAppBarca() {
     ) {
         CenterAlignedTopAppBar(
             title = {
-                Image(
-                    painterResource(R.drawable.barcaonelogo),
-                    contentDescription = "Logo Barça One",
-                    modifier = Modifier
-                        .height(35.dp)
-                )
+                if (titleImg != null) {
+                    Image(
+                        painterResource(titleImg),
+                        contentDescription = "Logo Barça One",
+                        modifier = Modifier
+                            .height(35.dp)
+                    )
+                } else if (titleText != null) {
+                    Text(titleText, style = MaterialTheme.typography.bodyMedium, fontSize = 24.sp)
+                }
+            },
+            navigationIcon = {
+                if (showBackIcon) {
+                    IconButton(
+                        onClick = { onBackClick?.invoke() }
+                    ) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack,
+                            null,
+                            tint = Color.White
+                        )
+                    }
+
+                }
             },
             actions = {
-                IconButton(
-                    onClick = { }
-                ) {
-                    Icon(
-                        painterResource(R.drawable.search),
-                        contentDescription = null,
-                        tint = Color.White
-                    )
-                }
-                IconButton(
-                    onClick = { }
-                ) {
-                    Icon(
-                        painterResource(R.drawable.user),
-                        contentDescription = null,
-                        tint = Color.White
-                    )
+                if (showSearchIcon && showProfileIcon) {
+                    IconButton(
+                        onClick = { onSearchClick?.invoke()}
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.search),
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
+                    IconButton(
+                        onClick = { onProfileClick?.invoke() }
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.user),
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
@@ -124,7 +158,7 @@ fun NavBar() {
         modifier = Modifier
             .height(80.dp)
     ) {
-        itemsNavBar.forEachIndexed{ index, item ->
+        itemsNavBar.forEachIndexed { index, item ->
             NavigationBarItem(
                 onClick = { },
                 icon = {
