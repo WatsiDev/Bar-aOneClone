@@ -22,7 +22,10 @@ import com.watsidev.barcaoneclone.ui.lazyRows.PlayerCards
 fun PlayersScreen(navigateBack: () -> Unit) {
     Scaffold(
         modifier = Modifier,
-        topBar = { TopAppBarca(showBackIcon = true, onBackClick = {navigateBack()} ) },
+        topBar = { TopAppBarca(
+            showBackIcon = true,
+            onBackClick = {navigateBack()}
+        ) },
         containerColor = MaterialTheme.colorScheme.primaryContainer,
     ) { innerPadding ->
         Column(

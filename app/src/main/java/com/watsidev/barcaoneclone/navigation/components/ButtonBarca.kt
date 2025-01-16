@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonBarca(BtnText: String){
+fun ButtonBarca(BtnText: String, onClick: () -> Unit){
     Button(
-        onClick = { },
+        onClick = { onClick() },
         modifier = Modifier
             .height(55.dp)
             .fillMaxWidth()

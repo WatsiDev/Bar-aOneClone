@@ -42,7 +42,7 @@ fun <T : PrimaryCardInterface> ColumnSection(
         modifier = Modifier
             .padding(vertical = 20.dp)
             .fillMaxWidth()
-            .height(520.dp)
+            .height(600.dp)
             .background(Color(0xFF0212ac))
     ) {
         imageBackground?.let {
@@ -110,7 +110,7 @@ fun <T : PrimaryCardInterface> ColumnSection(
 fun <T : PrimaryCardInterface> LazyRowPlayers(items: List<T>) {
     LazyRow(
         modifier = Modifier
-            .height(300.dp)
+            .height(350.dp)
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -123,20 +123,22 @@ fun <T : PrimaryCardInterface> LazyRowPlayers(items: List<T>) {
 @Composable
 fun <T : PrimaryCardInterface> PlayerCards(item: T, modifier: Modifier = Modifier) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier
+//            .height(350.dp)
     ) {
-        Image(
-            painterResource(item.imageRes),
-            contentDescription = null,
-            modifier = modifier
-                .fillMaxSize()
-                .clip(RoundedCornerShape(16.dp))
-        )
+            Image(
+                painterResource(item.imageRes),
+                contentDescription = null,
+                modifier = modifier
+                    .height(250.dp)
+                    .clip(RoundedCornerShape(16.dp))
+            )
         item.imageText?.let {
             Text(
                 stringResource(item.imageText!!),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White,
+                fontSize = 15.sp,
                 modifier = Modifier
                     .padding(start = 8.dp, bottom = 10.dp)
             )

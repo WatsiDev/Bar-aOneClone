@@ -11,12 +11,12 @@ data class ProfilesModel(
 object ProfileData{
     val profileList = listOf(
         ProfilesModel(
-            R.drawable.gavi,
+            R.drawable.profile_avatar_lewandowski,
             R.string.Jair
         ),
         ProfilesModel(
-            R.drawable.lamineyamal,
-            R.string.Lamine
+            R.drawable.profile_avatar_yamal,
+            R.string.Naty
         )
     )
 }

@@ -30,13 +30,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.watsidev.barcaoneclone.model.itemsNavBar
 import com.watsidev.barcaoneclone.navigation.core.NavigationWrapper
+import com.watsidev.barcaoneclone.navigation.start.AddNewProfileScreen
 import com.watsidev.barcaoneclone.navigation.start.ManageProfile
+import com.watsidev.barcaoneclone.navigation.start.SelectAvatarScreen
 import com.watsidev.barcaoneclone.navigation.start.SelectProfileScreen
+import com.watsidev.barcaoneclone.navigation.tabs.DirectoScreen
+import com.watsidev.barcaoneclone.navigation.tabs.FemeninoScreen
 import com.watsidev.barcaoneclone.navigation.tabs.InicioScreen
+import com.watsidev.barcaoneclone.navigation.tabs.PrimerEquipoScreen
 import com.watsidev.barcaoneclone.ui.theme.BarcaOneCloneTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,18 +53,27 @@ class MainActivity : ComponentActivity() {
         setContent {
             BarcaOneCloneTheme {
                 NavigationWrapper()
-//                SelectProfileScreen()
-//                ManageProfile()
+//                FemeninoScreen({}, {}) { }
             }
         }
     }
 }
 
 @Composable
-fun BarcaOneApp(navigataToPlayers: () -> Unit) {
+fun BarcaOneApp(
+    navigataToPlayers: () -> Unit,
+    navigationTeam: () -> Unit,
+    navigationStream: () -> Unit,
+    navigationFemenino: () -> Unit
+) {
     Scaffold(
         topBar = { TopAppBarca(showProfileIcon = true, showSearchIcon = true, titleImg = R.drawable.barcaonelogo) },
-        bottomBar = { NavBar() },
+        bottomBar = { NavBar(
+            {},
+            navigationTeam,
+            navigationStream,
+            navigationFemenino
+        ) },
         containerColor = MaterialTheme.colorScheme.primaryContainer
     ) { paddingValues ->
         Column(
@@ -105,7 +121,12 @@ fun TopAppBarca(
                             .height(35.dp)
                     )
                 } else if (titleText != null) {
-                    Text(titleText, style = MaterialTheme.typography.bodyMedium, fontSize = 24.sp)
+                    Text(
+                        titleText,
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Light
+                    )
                 }
             },
             navigationIcon = {
@@ -152,31 +173,138 @@ fun TopAppBarca(
 }
 
 @Composable
-fun NavBar() {
+fun NavBar(
+    navigationHome: () -> Unit,
+    navigationTeam: () -> Unit,
+    navigationStream: () -> Unit,
+    navigationFemenino: () -> Unit
+) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         modifier = Modifier
             .height(80.dp)
     ) {
-        itemsNavBar.forEachIndexed { index, item ->
-            NavigationBarItem(
-                onClick = { },
-                icon = {
-                    Icon(
-                        painter = painterResource(item.icon),
-                        contentDescription = null,
-                        tint = Color.White,
-                    )
-                },
-                selected = false,
-                label = {
-                    Text(
-                        item.label,
-                        style = MaterialTheme.typography.labelSmall,
-                        modifier = Modifier
-                    )
-                }
-            )
-        }
+//        itemsNavBar.forEachIndexed { index, item ->
+//            NavigationBarItem(
+//                onClick = {  },
+//                icon = {
+//                    Icon(
+//                        painter = painterResource(item.icon),
+//                        contentDescription = null,
+//                        tint = Color.White,
+//                    )
+//                },
+//                selected = false,
+//                label = {
+//                    Text(
+//                        item.label,
+//                        style = MaterialTheme.typography.labelSmall,
+//                        modifier = Modifier
+//                    )
+//                }
+//            )
+//        }
+        NavigationBarItem(
+            onClick = { navigationHome() },
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.home),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Inicio",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
+        NavigationBarItem(
+            onClick = { navigationTeam() },
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.run),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Primer equipo",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
+        NavigationBarItem(
+            onClick = { },
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.originals),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Originals",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
+        NavigationBarItem(
+            onClick = { navigationStream()},
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.video),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Directo",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
+        NavigationBarItem(
+            onClick = { navigationFemenino() },
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.femenino),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Femenino y mas barca",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
+        NavigationBarItem(
+            onClick = { },
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.history),
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            },
+            selected = false,
+            label = {
+                Text(
+                    "Historia",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+        )
     }
 }
